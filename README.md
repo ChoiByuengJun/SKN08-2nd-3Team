@@ -307,6 +307,9 @@ print("Data saved to:", output_file)
 
 
 # 7. 💡 데이터 탐색
+#### data - info
+<img src="../img/data-info.png" width="1000" />
+
 
 #### 가입 기간 분석
 
