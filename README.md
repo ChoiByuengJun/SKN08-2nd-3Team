@@ -501,6 +501,28 @@ plt.show()
 - 다섯 번째 주성분(PC5): 6.71%
 
 # 10. K-means
+## K-Means 클러스터링
+K-Means는 각 데이터 포인트를 가장 가까운 클러스터 중심으로 할당하는 반복적인 알고리즘입니다.
+각 영역에 대해 적절한 n_clusters를 설정하여 클러스터링 수행.
+
+## 비즈니스 클러스터링
+```python
+business_data = self.repository.preprocessData(data, business_columns)
+scaled_business, _ = self.repository.scaleData(business_data)
+_, business_labels = self.repository.performKMeans(scaled_business, n_clusters=4)
+data = self.repository.addClusterLabels(data, business_labels, "Business")
+```
+![KakaoTalk_20250114_170110378_01](https://github.com/user-attachments/assets/95779fe9-ce8a-402e-9a48-ea47b8342992)
+
+평점과 구매 주기에 따른 결과 - 고객은 주로 중간 평점(3~4점)과 짧은 구매 주기를 보이며, 긴 구매 주기 고객은 이탈 가능성이 높아 맞춤형 관리가 필요합니다.
+
+![KakaoTalk_20250114_170110378_05](https://github.com/user-attachments/assets/ce384d12-45b2-4bad-abf9-10ddb13e2175)
+
+구매 횟수가 적은 고객은 평균 구매 금액이 큰 폭으로 변동하며 고액 지출 고객일 가능성이 높고, 다회 구매 고객은 소액 거래 경향이 있어 업셀링 전략이 필요합니다.
+
+![KakaoTalk_20250114_170110378_08](https://github.com/user-attachments/assets/a0afe8d7-6680-4d27-b81e-8c6aff1bd312)
+
+가입 기간이 길어도 구매 횟수가 반드시 많아지지는 않으며, 가입 초기 고객과 충성 고객을 대상으로 각각 구매 빈도 증가 전략과 유지 혜택 프로그램이 필요합니다.
 
 # 11. Feature Engineering
 피처 생성
