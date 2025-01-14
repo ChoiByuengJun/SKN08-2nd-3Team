@@ -312,83 +312,7 @@ print("Data saved to:", output_file)
 
 
 
-#### 가입 기간 분석
-
-```python
-# 가입 기간 주요 통계 확인
-print(data['가입 기간'].describe())
-
-# 가입 기간 분포 시각화
-sns.histplot(data=data, x='가입 기간', kde=True, color='blue')
-plt.title('가입 기간 분포')
-plt.xlabel('가입 기간 (월)')
-plt.ylabel('빈도')
-plt.show()
-```
-
 ---
-
-#### 구매 빈도 분석
-
-```python
-# 구매 횟수 주요 통계 확인
-print(data['구매 횟수'].describe())
-
-# 구매 횟수 분포 시각화
-sns.histplot(data=data, x='구매 횟수', kde=True, color='green')
-plt.title('구매 횟수 분포')
-plt.xlabel('구매 횟수')
-plt.ylabel('빈도')
-plt.show()
-```
-
----
-
-#### 총 구매 금액 분석
-
-```python
-# 총 구매 금액 주요 통계 확인
-print(data['총 구매 금액'].describe())
-
-# 총 구매 금액과 이탈 여부의 관계 시각화
-sns.boxplot(data=data, x='이탈 여부', y='총 구매 금액', palette='coolwarm')
-plt.title('총 구매 금액과 이탈 여부')
-plt.xlabel('이탈 여부')
-plt.ylabel('총 구매 금액')
-plt.show()
-```
-
----
-
-#### 평균 평점 분석
-
-```python
-# 평균 평점 주요 통계 확인
-print(data['평균 평점'].describe())
-
-# 평균 평점과 이탈 여부의 관계 시각화
-sns.violinplot(data=data, x='이탈 여부', y='평균 평점', palette='Set3')
-plt.title('평균 평점과 이탈 여부')
-plt.xlabel('이탈 여부')
-plt.ylabel('평균 평점')
-plt.show()
-```
-
----
-
-#### 업종 및 회사 규모 분석
-
-```python
-# 회사 규모별 이탈 여부 시각화
-sns.countplot(data=data, x='회사 규모', hue='이탈 여부', palette='pastel')
-plt.title('회사 규모별 이탈 여부')
-plt.xlabel('회사 규모')
-plt.ylabel('빈도')
-plt.legend(title='이탈 여부')
-plt.show()
-```
-
-
 
 # 8. 전처리
 
@@ -405,11 +329,151 @@ plt.show()
   
 
 # 9. EDA
-### 상관 관계 분석
--
+#### 상위 30 고객별 데이터 갯수
 
-### 모델링에 사용할 데이터 선정
--
+```python
+customer_count = data['CustomerID'].value_counts().head(30)
+plt.figure(figsize=(12, 6))
+customer_count.plot(kind='bar', color='skyblue', edgecolor='black')
+plt.title('상위 30 고객별 데이터 개수', fontsize=16)
+plt.xlabel('CustomerID', fontsize=12)
+plt.ylabel('데이터 개수', fontsize=12)
+plt.tight_layout()
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/51a88683-bb75-441d-9fb6-fa0e80ad657b)
+
+---
+
+#### 업종별 고객 분포 및 총 구매 금액
+
+```python
+industry_counts = data['업종'].value_counts()
+total_purchase_by_industry = data.groupby('업종')['총 거래 금액'].sum()
+
+plt.figure(figsize=(8, 8))
+industry_counts.plot(kind='pie', autopct='%1.1f%%', startangle=90, colors=sns.color_palette('cool'))
+plt.title('업종별 고객 비율', fontsize=16)
+plt.ylabel('')
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(12, 6))
+total_purchase_by_industry.sort_values(ascending=False).plot(kind='bar', color='green', edgecolor='black')
+plt.title('업종별 총 구매 금액', fontsize=16)
+plt.xlabel('업종', fontsize=12)
+plt.ylabel('총 구매 금액 (원)', fontsize=12)
+plt.tight_layout()
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/d4c9c74d-9be1-45cb-8fb1-60464f60988e)
+
+
+---
+
+#### 회사 규모별 구매 및 평점 분석
+
+```python
+avg_purchase_by_company_size = data.groupby('회사 규모')['총 거래 금액'].mean()
+plt.figure(figsize=(12, 6))
+avg_purchase_by_company_size.sort_values(ascending=False).plot(kind='bar', color='skyblue', edgecolor='black')
+plt.title('회사 규모별 평균 총 구매 금액', fontsize=16)
+plt.xlabel('회사 규모', fontsize=12)
+plt.ylabel('평균 총 구매 금액 (원)', fontsize=12)
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(12, 6))
+sns.boxplot(x='회사 규모', y='평균 평점', data=data, palette='Set3', hue='회사 규모', dodge=False)
+plt.title('회사 규모별 평균 평점 분포', fontsize=16)
+plt.xlabel('회사 규모', fontsize=12)
+plt.ylabel('평균 평점', fontsize=12)
+plt.tight_layout()
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/ae425c96-b25a-4bed-865f-421f47472c4d)
+
+![image](https://github.com/user-attachments/assets/70c6cd68-edb3-4519-b185-f1acaf228ab2)
+
+
+---
+
+#### 지역별 고객 및 구매 금액 분석
+
+```python
+region_counts = data['지역'].value_counts()
+total_purchase_by_region = data.groupby('지역')['총 거래 금액'].sum()
+
+plt.figure(figsize=(12, 6))
+region_counts.head(10).plot(kind='bar', color='purple', edgecolor='black')
+plt.title('상위 10 지역별 고객 수', fontsize=16)
+plt.xlabel('지역', fontsize=12)
+plt.ylabel('고객 수', fontsize=12)
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(12, 6))
+total_purchase_by_region.sort_values(ascending=False).head(10).plot(kind='bar', color='brown', edgecolor='black')
+plt.title('상위 10 지역별 총 구매 금액', fontsize=16)
+plt.xlabel('지역', fontsize=12)
+plt.ylabel('총 구매 금액 (원)', fontsize=12)
+plt.tight_layout()
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/089b2410-11df-42bf-a862-189811ca13c5)
+
+![image](https://github.com/user-attachments/assets/09237d11-411d-429c-b289-dc89aafe551e)
+
+
+---
+
+#### 차량 모델별 분석
+
+```python
+model_counts = data['모델명'].value_counts().head(10)
+plt.figure(figsize=(12, 6))
+model_counts.plot(kind='bar', color='cyan', edgecolor='black')
+plt.title('상위 10 모델명별 구매 횟수', fontsize=16)
+plt.xlabel('모델명', fontsize=12)
+plt.ylabel('구매 횟수', fontsize=12)
+plt.tight_layout()
+plt.show()
+
+plt.figure(figsize=(8, 8))
+model_counts.plot(kind='pie', autopct='%1.1f%%', startangle=90, colors=sns.color_palette('hsv'))
+plt.title('상위 10 차량 모델 비율', fontsize=16)
+plt.ylabel('')
+plt.tight_layout()
+plt.show()
+```
+
+![image](https://github.com/user-attachments/assets/64062230-3bcd-4bdf-b04a-470ee872f10d)
+![image](https://github.com/user-attachments/assets/77b7b1f6-efac-4636-aec2-16961d18cffd)
+
+---
+
+#### 구매 주기 별 총 구매금액의 관계 분석
+
+![image](https://github.com/user-attachments/assets/64e5ec0f-b713-4f3e-bfe7-b3da4fe4cf19)
+![image](https://github.com/user-attachments/assets/5483d8ce-342b-425f-9111-800ed232202d)
+
+
+---
+
+#### 전체 고객의 평균 평점 분석
+
+![image](https://github.com/user-attachments/assets/d2fbacd3-b18c-472c-ab0d-fbd4bc53f260)
+
+
+---
+
+
+#### 가입 기간 대비 평균 구매 주기
+
+![image](https://github.com/user-attachments/assets/f154969e-7918-4b89-8a01-f9c4c9fa88ff)
+
 
 # 10. 모델링
 ### 지도학습
