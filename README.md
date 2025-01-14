@@ -474,20 +474,113 @@ plt.show()
 
 ![image](https://github.com/user-attachments/assets/f154969e-7918-4b89-8a01-f9c4c9fa88ff)
 
+# 10. PCA
+### 상관 관계 히트맵
+![pca 히트맵2](https://github.com/user-attachments/assets/d609f0e2-b464-44ba-bec8-02e08caae35b)
+1. 강한 양의 상관관계를 보이는 변수들
+- 구매 횟수와 총 구매 금액: 0.95로 매우 높은 상관성을 보입니다. 이는 구매 횟수가 증가하면 총 구매 금액도 증가한다는 것을 의미합니다.
+- 평균 구매 주기와 가입 기간: 약 0.53으로 양의 상관관계를 보이며, 가입 기간이 길어질수록 평균 구매 주기도 길어지는 경향을 나타냅니다.
 
-# 10. 모델링
-### 지도학습
--
+2. 음의 상관관계를 보이는 변수들:
+- 이탈 여부와 구매 횟수, 총 구매 금액: 약 -0.44로 음의 상관관계를 보이며, 구매 횟수나 총 구매 금액이 많을수록 이탈 가능성이 낮아짐을 시사합니다.
 
-### 비지도학습
--
+### 주성분 히트맵
+![pca_heatmap](https://github.com/user-attachments/assets/09fbcb18-02f0-4061-bedd-6d8364afbb77)
+각 주성분(PC1~PC5)에 대한 주요 변수의 기여도를 보여줍니다.
+- PC1:
+이탈 여부와 평균 구매 금액이 가장 높은 양의 기여를 합니다.
+반면, 구매 횟수와 총 구매 금액은 음의 기여를 보여줍니다.
+- PC2:
+평균 구매 주기와 가입 기간이 주요 기여를 합니다.
+- PC3:
+평점과 관련된 변수가 주요 기여 요인으로 작용합니다.
 
-# 11. 결론
+
+- 이탈 여부 분석: PC1과 PC2가 데이터의 중요한 특성을 요약합니다.
+
+### 설명 분산 비율
+![pca 분산비율](https://github.com/user-attachments/assets/1e09eafc-365b-445a-9578-df31317b9f1f)
+주성분 분석(PCA)을 통해 데이터 변동성을 요약한 결과, 5개의 주성분이 전체 변동성의 약 81%를 설명하며 PC1, PC2가 높은 비율로 변동성을 설명할 수 있습니다.
+- 첫 번째 주성분(PC1): 21.56%
+- 두 번째 주성분(PC2): 20.23%
+- 세 번째 주성분(PC3): 17.95%
+- 네 번째 주성분(PC4): 13.75%
+- 다섯 번째 주성분(PC5): 6.71%
+
+# 11. K-means
+
+# 12. Feature Engineering
+피처 생성
+- 가입 기간: 최근 서비스 이용 날짜 - 가입 일자
+- 구매 주기: 각 고객의 구매 간 간격을 계산
+- 평균 구매 주기: 구매 주기의 누적 평균
+- 평균 구매 금액: 총 구매 금액 / 구매 횟수
+
+# 13. 모델링
+
+## 1. 데이터셋 분리
+```python
+def splitTrainTestData(self, data: pd.DataFrame):
+    X = data.drop(columns=['CustomerID', '회사명', '이탈 여부', '가입 일자', '최근 서비스 이용 날짜', '구매 일자'], errors='ignore')
+    y = data['이탈 여부']
+    return train_test_split(X, y, test_size=0.2, random_state=42)
+```
+## 원-핫 인코딩
+- 범주형 데이터를 수치형 데이터로 변환.
+```python
+def encodeCategoricalFeatures(self, data: pd.DataFrame) -> pd.DataFrame:
+  categorical_columns = data.select_dtypes(include=['object']).columns
+  print(f"Encoding these categorical columns: {categorical_columns.tolist()}")
+  data = pd.get_dummies(data, columns=categorical_columns, drop_first=True)
+  return data
+```
+
+## 스케일링
+- 데이터의 범위를 표준화하여 학습에 적합한 형태로 변환.
+```python
+def scaleFeatures(self, X_train, X_test):
+    scaler = StandardScaler()
+    X_train = scaler.fit_transform(X_train)
+    X_test = scaler.transform(X_test)
+    return X_train, X_test
+```
+## 모델 학습
+- Logistic Regression: 이탈 여부를 이진 분류로 예측하기 위해 사용.
+- Balanced Class Weight: 데이터 불균형을 고려하여 클래스 가중치를 조정.
+```python
+def trainModel(self, X_train, y_train):
+    model = LogisticRegression(class_weight='balanced', random_state=42)
+    model.fit(X_train, y_train)
+    return model
+```
+## 모델 평가
+- Accuracy: 전체 예측 중 올바르게 예측한 비율.
+- Precision: Positive(이탈) 예측 중 실제로 맞는 비율.
+- Recall: 실제 Positive(이탈) 중 올바르게 예측한 비율.
+- F1-Score: Precision과 Recall의 조화 평균.
+- Confusion Matrix: True Positive, True Negative, False Positive, False Negative의 결과.
+
+## 결과 분석
+<img width="311" alt="스크린샷 2025-01-14 오후 4 21 38" src="https://github.com/user-attachments/assets/f0c771cc-698d-4053-b4ec-44f1a23ac849" />
+
+- Accuracy: 94.16%
+- Precision: 87.20%
+- Recall: 94.98%
+- F1-Score: 90.92%
+- Confusion Matrix: 예측 Negative	1300	31, 예측 Positive	86	586
+## 
+# 14. 결론
+### 모델 성능
+고객 이탈 예측 모델이 높은 성능(94% 정확도)으로 작동하며, Precision(87%)과 Recall(95%) 간의 균형을 달성했습니다.
+
+
 ### 초기 추측과 비교
 -
 
 ### 고객 이탈률 개선 방안
--
+- 다른 알고리즘(랜덤 포레스트, Gradient Boosting 등)과의 비교.
+- 새로운 데이터에 대한 테스트 및 모델 일반화 성능 평가.
+- 추가 특성 생성 및 데이터 증강(Data Augmentation) 기법 적용.
 
 
 
