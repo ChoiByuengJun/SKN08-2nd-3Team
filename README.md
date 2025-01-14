@@ -502,8 +502,8 @@ plt.show()
 
 # 10. K-means
 ## K-Means 클러스터링
-K-Means는 각 데이터 포인트를 가장 가까운 클러스터 중심으로 할당하는 반복적인 알고리즘입니다.
-각 영역에 대해 적절한 n_clusters를 설정하여 클러스터링 수행.
+- K-Means는 각 데이터 포인트를 가장 가까운 클러스터 중심으로 할당하는 반복적인 알고리즘입니다.
+- 각 영역에 대해 적절한 n_clusters를 설정하여 클러스터링 수행.
 
 ## 비즈니스 클러스터링
 ```python
@@ -512,6 +512,21 @@ scaled_business, _ = self.repository.scaleData(business_data)
 _, business_labels = self.repository.performKMeans(scaled_business, n_clusters=4)
 data = self.repository.addClusterLabels(data, business_labels, "Business")
 ```
+## 거래 클러스터링
+```python
+transaction_data = data[transaction_columns]
+scaled_transaction, _ = self.repository.scaleData(transaction_data)
+_, transaction_labels = self.repository.performKMeans(scaled_transaction, n_clusters=3)
+data = self.repository.addClusterLabels(data, transaction_labels, "Transaction")
+```
+## 제품 클러스터링
+```python
+product_data = self.repository.preprocessData(data, product_columns)
+scaled_product, _ = self.repository.scaleData(product_data)
+_, product_labels = self.repository.performKMeans(scaled_product, n_clusters=5)
+data = self.repository.addClusterLabels(data, product_labels, "Product")
+```
+
 ![KakaoTalk_20250114_170110378_01](https://github.com/user-attachments/assets/95779fe9-ce8a-402e-9a48-ea47b8342992)
 
 평점과 구매 주기에 따른 결과 - 고객은 주로 중간 평점(3~4점)과 짧은 구매 주기를 보이며, 긴 구매 주기 고객은 이탈 가능성이 높아 맞춤형 관리가 필요합니다.
@@ -533,7 +548,7 @@ data = self.repository.addClusterLabels(data, business_labels, "Business")
 
 # 12. 모델링
 
-## 1. 데이터셋 분리
+## 데이터셋 분리
 ```python
 def splitTrainTestData(self, data: pd.DataFrame):
     X = data.drop(columns=['CustomerID', '회사명', '이탈 여부', '가입 일자', '최근 서비스 이용 날짜', '구매 일자'], errors='ignore')
