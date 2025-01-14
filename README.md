@@ -12,33 +12,33 @@ SK Networks AI 8기 2번째 단위 프로젝트입니다.
 
 
 # 1. Introduction Team (팀 소개)
-### ✅ 팀명 : COACH
+### ✅ 팀명 : MASHED-PHOTATO
 <table align=center>
   <tbody>
     <tr>
-      <td align=center><b>왕환민</b></td>
-      <td align=center><b>김현우</b></td>
+      <td align=center><b>유제나</b></td>
+      <td align=center><b>조준희</b></td>
       <td align=center><b>주고은</b></td>
-      <td align=center><b>손승일</b></td>
+      <td align=center><b>최병준</b></td>
     </tr>
     <tr>
       <td align="center">
         <div>
-          <img width="200" alt="image" src="https://github.com/user-attachments/assets/d3a14a4d-9f6a-4c66-b61d-bac75bb6cc82">
+          <img width="200" alt="image" src="https://avatars.githubusercontent.com/u/167101468?v=4"width="200px;" alt="유제나">
         </div>
       </td>
       <td align="center">
         <div>
-          <img src = "https://github.com/user-attachments/assets/ea1c1774-e583-46e8-9f43-576069ce87df" width="200px" height="200px"; alt=""/>
+          <img src = "https://avatars.githubusercontent.com/u/188949785?v=4" width="200px" height="200px"; alt="조준희"/>
         </div>
       </td>
       <td align="center">
         <div>
-          <img src="https://avatars.githubusercontent.com/u/133327235?v=4" width="200" height="200">
+          <img src="https://avatars.githubusercontent.com/u/133327235?v=4" width="200" height="200" alt="주고은">
         </div>
       </td>
       <td align="center">
-        <img src="https://avatars.githubusercontent.com/u/145750431?v=4" width="200" height="200" class="avatar avatar-user width-full border color-bg-default">
+        <img src="https://avatars.githubusercontent.com/u/188127748?v=4" width="200" height="200" class="avatar avatar-user width-full border color-bg-default" alt="최병준">
       </td>
     </tr>
     <tr>
@@ -53,25 +53,45 @@ SK Networks AI 8기 2번째 단위 프로젝트입니다.
 
 
 
-# 2. Introduction Project (프로젝트 개요)
+# 2. 📍Introduction Project📍 (프로젝트 개요)
 
 ### ✅프로젝트 명
-전국 자동차 등록 현황 및 기업 FAQ 조회 웹앱
+자동차 판매사이트의 고객 이탈 여부 데이터 분석 및 개선 방안 제안
 
 ### ✅프로젝트 소개
-전국의 자동차 등록 현황을 조사하여 데이터를 시각화하고 관심 정보를 조회 할 수 있음
+자동차 판매 사이트에서 고객의 구매 데이터를 분석하고, 고객 이탈 여부를 예측하는 프로젝트입니다.
+고객 행동 데이터를 기반으로 데이터 전처리, 클러스터링, 차원 축소 및 시각화를 통해 고객의 특성과 이탈 가능성을 파악하는 것을 목표로 하며,
+이를 통해 효율적인 마케팅 전략을 수립하고, 고객 유치율을 높이고자합니다.
+
 
 ### ✅프로젝트 필요성(배경)
-- 
-- 
+1. **고객 이탈 문제의 중요성**  
+   - 자동차 판매 시장에서 기존 고객의 이탈은 신규 고객을 유치하는 것보다 더 큰 비용을 초래합니다.
+   - 고객 이탈 예측을 통해 기업은 사전에 대응하여 충성 고객을 유지할 수 있습니다.
+
+2. **데이터 기반 의사결정의 필요성**  
+   - 데이터 분석과 예측 모델링을 통해 고객 행동을 이해하고, 이를 바탕으로 효과적인 비즈니스 전략을 수립할 수 있습니다.
+   - 정제된 데이터를 기반으로 한 클러스터링과 시각화는 고객 세분화 및 맞춤형 마케팅 전략 개발에 필수적입니다.
+
+3. **효율적 자원 관리**  
+   - 고객 행동 데이터를 분석하여 마케팅 자원을 효율적으로 배분하고, 이탈 가능성이 높은 고객에게 집중 투자할 수 있습니다.
 
 ### ✅프로젝트 목표
-- Domain Driven Design 학습 사항을 python으로 구현
-- Crawling 방식이 잘 동작하는지 검증
-- README.md 작성 방법 습득
-- streamlit을 활용한 UI 구성
-- MYSQL DB에 데이터를 삽입하고 꺼내오는 방법에 대한 동작 검증
-- 학습 내용들에 대한 전반적인 복습
+1. **데이터 전처리 및 분석 능력 강화**  
+   - Python을 사용한 데이터 정제 및 가공.
+   - Feature Engineering 기법을 통해 데이터의 품질을 개선하고 분석 가능성을 확대.
+
+2. **효율적인 클러스터링 및 차원 축소**  
+   - K-Means 클러스터링을 활용하여 고객을 유사한 그룹으로 분류.
+   - PCA(Principal Component Analysis)를 통해 데이터를 시각화하고 차원을 축소하여 주요 특징을 파악.
+
+3. **고객 이탈 예측 모델 개발**  
+   - 고객 행동 데이터를 기반으로 한 이탈 여부 예측.
+   - 분석 결과를 통해 고객 이탈 가능성을 시각화하고 이해하기 쉽게 전달.
+
+4. **최종 목표**  
+   - 고객 이탈 가능성에 따라 맞춤형 마케팅 전략을 제안.
+   - 분석 결과를 기반으로 한 데이터 중심 의사결정 지원.
 <br><br><br>
 
 
@@ -94,18 +114,6 @@ SK Networks AI 8기 2번째 단위 프로젝트입니다.
   </tr>  
 </table>
 
->### <span style="color:cyan"> Streamlit </span>
-<table>
-  <tr>
-    <td>PyCharm</td>
-    <td><img src="https://img.shields.io/badge/pycharm-%23000000?style=flat&logo=pycharm&logoColor=white"/></td>
-    <td><img src="https://img.shields.io/badge/python-3776AB?style=flat&logo=python&logoColor=white"/></td>
-    <td><img src="https://img.shields.io/badge/-Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white"/></td>
-    <td></td>
-    <td></td>
-  </tr>
-</table>
-
 
 >### <span style="color:cyan"> Data Server </span>
 <table>
@@ -118,52 +126,87 @@ SK Networks AI 8기 2번째 단위 프로젝트입니다.
     <td>RDBMS</td>
     <td><img src="https://img.shields.io/badge/mysql-4479A1?style=flat&logo=mysql&logoColor=white"/></td>
     <td></td>
+    <td></td>
   </tr>
 </table>
 <br><br><br>
 
 
+# 4. ✅애자일 보드 
 
-## 애자일 보드를 사용하는 이유
-```c
-과거 정의서들을 일일히 작성하였지만 빠른 속도로 무언가를 개발하는데 한계가 있습니다.
-처음부터 많은 것들을 빌드업하면서 빠른 생산성을 기반으로 움직이려면 반드시 애자일해야합니다.
-고로 폭포수 설계 방식이 아닌 애자일 프로세스 방식으로 애자일 보드를 작성하면서 진행했습니다.
-
-애자일 보드는 자체적으로 제목이 요구 사항을 내포하며 각 카드 내부에는 정의한 Domain의 세부 사항이 기록됩니다.
-고로 빠르게 팀원들과 협업 할 수 있고 소통 비용을 최소화시킬 수 있습니다.
-작은 것 같지만 이와 같은 것들이 쌓여서 아주 기민하고 민첩한 조직을 만들어 냅니다.
-```
-
-# 4. 애자일 보드 (WBS + 요구사항 명세서 대응)
-### ✅ Streamlit UI - Streamlit UI 구성
-![image](https://github.com/user-attachments/assets/eab8d436-68e7-47e1-a1af-51734e88d5fa)
-
-<br><br><br>
-
-### ✅ Data Server - MySQL에 차량 데이터 관리
+### Data Analysis 
 ![image](https://github.com/user-attachments/assets/98fec318-f43d-48a9-bf7d-ca08913fe7b9)
 
 <br><br><br>
 
 
+# 5. 📈 활용 데이터셋
+```c
 
-# 6. ERD
+```
 
-# 7. 주요 프로시저
 
-# 8. Result (수행 결과)
+# 6. 💡 상관관계 추측
+
+추측 1. 장기 고객은 이탈률이 낮을 것이다.
+
+추측 2. 회사 규모와 구매빈도는 이탈률에 영향을 미칠 것이다.
+
+추측 3. 
+
+추측 4.
+
+<aside>
+
+💬추측한 내용대로 가입 기간, 구매이력, 기업 규모 등이 이탈률에 영향을 미칠까?
+
+</aside>
+
+# 7. 데이터 탐색
+
+
+# 8. 전처리
+
+### 결측치, 이상치 탐지 및 처리
+-
+### 평균치 컬럼 생성
+-
+### 표준화 컬럼 생성 
+-
+
+# 9. EDA
+### 상관 관계 분석
+-
+
+### 모델링에 사용할 데이터 선정
+-
+
+# 10. 모델링
+### 지도학습
+-
+
+### 비지도학습
+-
+
+# 11. 결론
+### 초기 추측과 비교
+-
+
+### 고객 이탈률 개선 방안
+-
+
+
 
   
 # 9. 한 줄 회고
-🤓<b>김현우</b>  
+🤓<b>유제나</b>  
 _Ddd구조에 더 많은 학습이 필요하다고 느껴졌고 많은 지식을 알아갔던 시간이였던 거 같습니다.👏_
 
-👨‍💻<b>왕환민</b>  
+👨‍💻<b>조준희</b>  
 _크롤링이라는 것을 처음 사용해봤는데 아직 완전히 이해하지 못했습니다. 좋은 경험이 되었고 더욱 공부에 힘내겠습니다._
 
-😺<b>정아람</b>  
+😺<b>주고은</b>  
 _좋은 팀원분들을 만나 덕분에 많이 배울 수 있었고 프로젝트도 잘 마무리될 수 있었다고 생각합니다. 수고하셨습니다😊_
 
-🪐<b>손승일</b>  
+🪐<b>최병준</b>  
 _학창시절에 배우기만 했던 DDD구조를 직접 구현해 보면서 코딩 실력이 예전에 비해서 많이 늘은것 같다._
