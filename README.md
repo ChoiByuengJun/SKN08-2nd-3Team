@@ -42,10 +42,10 @@ SK Networks AI 8기 2번째 단위 프로젝트입니다.
       </td>
     </tr>
     <tr>
-      <td><a href="https://github.com/minleewang"><div align=center>@Hwan-Min</div></a></td>
-      <td><a href="https://github.com/kimhyeonu4586"><div align=center>@hyeonu-kim</div></a></td>
+      <td><a href="https://github.com/denalog"><div align=center>@denalog</div></a></td>
+      <td><a href="https://github.com/CodeLego8"><div align=center>@CodeLego8</div></a></td>
       <td><a href="https://github.com/Goeun-Ju"><div align=center>@Goeun-Ju</div></a></td>
-      <td><a href="https://github.com/ajeseung"><div align=center>@ajeseung</div></a></td>
+      <td><a href="https://github.com/ChoiByuengJun"><div align=center>@ChoiByuengJun</div></a></td>
     </tr>
   </tbody>
 </table>
